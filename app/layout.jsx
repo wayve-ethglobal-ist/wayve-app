@@ -1,7 +1,6 @@
 import './globals.css'
 import { GeistSans } from "geist/font/sans";
 import { Handjet } from 'next/font/google'
-import ApplicationLogo from './components/ApplicationLogo';
 
 export const metadata = {
   title: 'Create Next App',

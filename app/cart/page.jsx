@@ -115,7 +115,7 @@ export default function Cart() {
 
             <div className="relative mt-10">
               <ReactSlider
-                className="w-100 h-[50px] bg-primary bg-opacity-50 rounded-lg"
+                className="w-100 h-[50px] bg-gradient-to-r from-indigo-400 to-indigo-700 rounded-lg"
                 thumbClassName="top-[1px] w-[50px] h-[48px] bg-primary rounded-lg cursor-pointer outline-none focus:outline-none"
                 trackClassName="bg-red-300"
                 value={value}
