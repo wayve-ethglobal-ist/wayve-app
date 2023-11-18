@@ -5,6 +5,7 @@ import MainTitle from '../components/MainTitle'
 import Desc from '../components/Desc'
 import ReactSlider from 'react-slider'
 import ApplicationLogo from '../components/ApplicationLogo'
+import Breadcrumbs from '../components/Breadcrumbs'
 
 const products = [
   {
@@ -52,7 +53,13 @@ export default function Cart() {
   return (
     <div>
       <ApplicationLogo />
-      <main>
+      <Breadcrumbs 
+        pages={[
+          { name: 'Success', href: 'success' },
+          { name: 'Card', href: 'card-list' },
+        ]} 
+      />
+      <main className="mb-12">
         <MainTitle text="Shopping Cart"/>
         <Desc text="Items to purchase placeholder text" />
 
