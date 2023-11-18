@@ -10,19 +10,19 @@ import Breadcrumbs from '../components/Breadcrumbs'
 const products = [
   {
     id: 1,
-    name: 'Artwork Tee',
+    name: 'Nouns Tee',
     price: '10 USDC',
-    desc: 'This glass bottle short description of item not more than two lines',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/checkout-page-03-product-04.jpg',
+    desc: 'A fun, quirky way to flaunt commitment to your bags.',
+    imageSrc: 'https://m.media-amazon.com/images/I/A1nYNISnPeL._AC_CLa%7C2140%2C2000%7CA1-AZz8Vd-L.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_UY580_.png',
     imageAlt: 'Front of mint cotton t-shirt with wavey lines pattern.',
     qty: 2,
   },
   {
     id: 2,
-    name: 'Basic Tee',
+    name: 'Nouns Polo',
     price: '10 USDC',
-    desc: 'This glass bottle short description of item not more than two lines',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-02.jpg',
+    desc: 'Shades you from the glare of Layer 2 breakneck innovation.',
+    imageSrc: 'https://d1q9av5b648rmv.cloudfront.net/v3/1024x1024/full-graphic-t-shirt/xl/white/front/10133404/1654778847-440x600.png.13.415-0.0017+0.0.jpg?h=2141967dcd031dccb1ffc8a80e027234aafaaacb&printed=true',
     imageAlt: 'Front of charcoal cotton t-shirt.',
     qty: 1,
   },
@@ -61,7 +61,7 @@ export default function Cart() {
       />
       <main className="mb-12">
         <MainTitle text="Shopping Cart"/>
-        <Desc text="Items to purchase placeholder text" />
+        <Desc text="Checkout with crypto" />
 
         <form className="mt-6">
           <section aria-labelledby="cart-heading">
