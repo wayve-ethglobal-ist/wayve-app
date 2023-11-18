@@ -9,8 +9,8 @@ import { Disclosure } from '@headlessui/react'
 import { ChevronUpIcon } from '@heroicons/react/20/solid'
 
 export default function CardList() {
-  const [isCardSelected, setIsCardSelected] = useState(true);
-  const [selectedCard, setSelectedCard] = useState('SpaceX');
+  const [isCardSelected, setIsCardSelected] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
 
   const handleCardClick = (cardName) => {
     if(selectedCard){
