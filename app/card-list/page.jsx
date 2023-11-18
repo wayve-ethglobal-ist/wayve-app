@@ -66,7 +66,7 @@ export default function CardList() {
 
     const contract = new ethers.Contract("0x8fbbd991e9c50bab1bf0270d981d1028a2036c91", abi, provider)
 
-    const points = await contract.balanceOf("0xcd7c1b32b96b6b80e9186fd0c7e7b1b160486928")
+    const points = await contract.balanceOf(wallet.address)
 
     setPoints(ethers.formatEther(points))
 
