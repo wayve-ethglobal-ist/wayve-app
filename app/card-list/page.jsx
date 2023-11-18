@@ -9,14 +9,17 @@ import Desc from "../components/Desc"
 import { Disclosure } from '@headlessui/react'
 import { ChevronUpIcon } from '@heroicons/react/20/solid'
 import { Profile } from '@ensdomains/thorin'
+import { TokenboundClient } from "@tokenbound/sdk";
 
 export default function CardList() {
   const [isCardSelected, setIsCardSelected] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [account, setAccount] = useState("0x24991159E98C9F1808871F303C151e126eF02880")
   const [points, setPoints] = useState(0)
-  const [name, setName] = useState("Wayve Points")
+  const [name, setName] = useState("unicef.wayve.eth")
 
   const provider = new ethers.JsonRpcProvider("https://goerli.infura.io/v3/bacf8ec5ca9e45a48cd54424d47e2811")
+  const wallet = new ethers.Wallet("0cd14d6fe492bb127068b07a599fac4aee83d023049a76b597ef80d6d8074cb9")
 
   const handleCardClick = (cardName) => {
     if (selectedCard) {
@@ -27,12 +30,27 @@ export default function CardList() {
     setSelectedCard(cardName);
   };
 
+  // read corresponding tokenbound wallet
+
+  const getTokenboundAccount = async () => {
+
+    const tokenboundClient = new TokenboundClient({ wallet, chainId: 5 })
+
+    const tokenboundAccount = tokenboundClient.getAccount({
+      tokenContract: "0x57a5de06a609bde8abe538ca87903f692b8ee14c",
+      tokenId: "0",
+    })
+
+    setAccount(tokenboundAccount)
+
+  }
+
   // resolve ENS name if applicable
 
   const resolveAddress = async () => {
 
-    const address = "0xEeee7341f206302f2216e39D715B96D8C6901A1C"
-    const ens = await provider.lookupAddress(address)
+    const ens = await provider.lookupAddress(account)
+    console.log(ens)
 
     setName(ens)
 
@@ -63,22 +81,24 @@ export default function CardList() {
       element.style.width = 'auto';
       element.style.maxWidth = '15rem';
     } 
-  })
+    getTokenboundAccount()
+  }, [account])
 
   return (
     <div className="h-screen overflow-hidden relative">
       <div className="flex items-center justify-between">
         <ApplicationLogo />
         <Profile
-          address="0xb6e040c9ecaae172a89bd561c5f73e1c48d28cd9"
-          ensName="frontend.ens.eth"
+          address={account}
+          ensName="unicef.wayve.eth"
+          avatar="https://noun.pics/911.svg"
         />
       </div>
       <div className={`absolute left-0 right-0 transition-all duration-500 ease-in-out ${isCardSelected ? 'top-6' : 'top-1/2 -translate-y-1/2 grid place-items-center'}`}>
         <div className="w-full">
           <div className={`mb-4 text-center text-xl transition-opacity duration-500 ${isCardSelected ? 'opacity-0' : 'opacity-100'}`}>Select card</div>
           <button onClick={() => setIsCardSelected(!isCardSelected)} className="w-full">
-            <Card name={name} points={points} img="pexels-1.jpg" />
+            <Card name="Wayve Points" points={points} img="pexels-1.jpg" />
           </button>
         </div>
       </div>
