@@ -6,10 +6,9 @@ export default function Breadcrumbs({ pages }) {
     <nav className="flex my-2" aria-label="Breadcrumb">
       <ol role="list" className="flex items-center space-x-1">
         <li>
-          <div>
-            <Link href={`/`} className="text-gray-400 hover:text-gray-500">
-              <HomeIcon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
-              <span className="sr-only">Home</span>
+          <div className="mb-1">
+            <Link href={`/`} className="ml-2 text-sm font-medium text-gray-500 hover:text-gray-700">
+              <span>Home</span>
             </Link>
           </div>
         </li>
