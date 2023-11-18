@@ -15,7 +15,13 @@ export default function Voting() {
           <Desc text="Vote for your ESG option." />
         </div>
         
-        <Card name="SpaceX" points="1250" img="pexels-1.jpg" />
+        <div className="p-4 w-full rounded-2xl bg-cover flex flex-col justify-between" style={{ backgroundImage: `url("pexels-5.jpg")`, aspectRatio: '16 / 9' }}>
+          <div className="text-white font-medium text-xl">ESG Title</div>
+          <div className="flex justify-between items-end">
+            <div className="text-white">381 voted</div>
+            <div className="text-white">01 days 11 hours</div>
+          </div>
+        </div>
 
         <div>
           <h3 className="font-medium">Voting Options:</h3>
