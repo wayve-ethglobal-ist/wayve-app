@@ -57,6 +57,12 @@ export default function CardList() {
   useEffect(() => {
     getPoints()
     resolveAddress()
+
+    const element = document.querySelector('[data-testid]');
+    if (element) {
+      element.style.width = 'auto';
+      element.style.maxWidth = '15rem';
+    } 
   })
 
   return (
