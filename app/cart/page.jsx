@@ -47,7 +47,7 @@ export default function Cart() {
       return;
     }
 
-    window.location.href = '/pay';
+    window.location.href = '/success';
   };
 
   return (

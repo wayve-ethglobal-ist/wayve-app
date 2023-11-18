@@ -6,11 +6,21 @@ import Link from "next/link"
 const products = [
   {
     id: 1,
-    name: 'Cold Brew Bottle',
-    desc: 'This glass bottle comes with a mesh insert for steeping tea or cold-brewing coffee. Pour from any angle and remove the top for easy cleaning.',
-    quantity: 1,
-    price: '$32.00',
-    imageSrc: 'https://tailwindui.com/img/ecommerce-images/confirmation-page-05-product-01.jpg',
+    name: 'Nouns Tee',
+    price: '10 USDC',
+    desc: 'A fun, quirky way to flaunt commitment to your bags.',
+    imageSrc: 'https://m.media-amazon.com/images/I/A1nYNISnPeL._AC_CLa%7C2140%2C2000%7CA1-AZz8Vd-L.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_UY580_.png',
+    imageAlt: 'Front of mint cotton t-shirt with wavey lines pattern.',
+    qty: 2,
+  },
+  {
+    id: 2,
+    name: 'Nouns Polo',
+    price: '10 USDC',
+    desc: 'Shades you from the glare of Layer 2 breakneck innovation.',
+    imageSrc: 'https://d1q9av5b648rmv.cloudfront.net/v3/1024x1024/full-graphic-t-shirt/xl/white/front/10133404/1654778847-440x600.png.13.415-0.0017+0.0.jpg?h=2141967dcd031dccb1ffc8a80e027234aafaaacb&printed=true',
+    imageAlt: 'Front of charcoal cotton t-shirt.',
+    qty: 1,
   },
 ]
 
@@ -20,7 +30,7 @@ export default function Success() {
       <ApplicationLogo />
       <div className="max-w-xl">
         <MainTitle text="Thank you!" />
-        <Desc text="Thank you for purchasing at our store." />
+        <Desc text="For inquiries call 1800-EIP-4337" />
       </div>
 
       <section aria-labelledby="order-heading" className="mt-10 border-t border-gray-200">
@@ -62,7 +72,7 @@ export default function Success() {
           <Desc text="ORDER SUMMARY" />
           <div className="flex justify-between">
             <dt className="font-medium text-gray-900">Price</dt>
-            <dd className="text-gray-700">10USDC</dd>
+            <dd className="text-gray-700">20 USDC</dd>
           </div>
           <div className="flex justify-between">
             <dt className="font-medium text-gray-900">Gas Fee</dt>
@@ -104,10 +114,10 @@ export default function Success() {
         </dl>
 
         <Link
-          href={`/cart`}
+          href={`/card-list`}
           className="flex w-full items-center justify-center rounded-md border border-gray-300 bg-primary hover:opacity-80 px-4 py-2 text-base font-medium text-white focus:outline-none md:w-auto"
         >
-          Continue Shopping
+          View Membership
         </Link>
       </section>
     </div>
