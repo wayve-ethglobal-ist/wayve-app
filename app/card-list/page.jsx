@@ -8,6 +8,7 @@ import MainTitle from "../components/MainTitle"
 import Desc from "../components/Desc"
 import { Disclosure } from '@headlessui/react'
 import { ChevronUpIcon } from '@heroicons/react/20/solid'
+import { Profile } from '@ensdomains/thorin'
 
 export default function CardList() {
   const [isCardSelected, setIsCardSelected] = useState(false);
@@ -60,7 +61,13 @@ export default function CardList() {
 
   return (
     <div className="h-screen overflow-hidden relative">
-      <ApplicationLogo />
+      <div className="flex items-center justify-between">
+        <ApplicationLogo />
+        <Profile
+          address="0xb6e040c9ecaae172a89bd561c5f73e1c48d28cd9"
+          ensName="frontend.ens.eth"
+        />
+      </div>
       <div className={`absolute left-0 right-0 transition-all duration-500 ease-in-out ${isCardSelected ? 'top-6' : 'top-1/2 -translate-y-1/2 grid place-items-center'}`}>
         <div className="w-full">
           <div className={`mb-4 text-center text-xl transition-opacity duration-500 ${isCardSelected ? 'opacity-0' : 'opacity-100'}`}>Select card</div>
@@ -79,7 +86,7 @@ export default function CardList() {
         }}
       >
         <div className="w-full">
-          <Card name="SpaceX" points="1250" img="pexels-1.jpg" />
+          <Card name="SpaceX" points="1250" img="pexels-4.jpg" />
         </div>
       </div>
       <div
