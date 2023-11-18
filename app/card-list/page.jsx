@@ -71,7 +71,7 @@ export default function CardList() {
       </div>
 
       <div
-        className={`absolute left-0 right-0 transition-opacity duration-500 ease-in-out ${selectedCard === null ? 'opacity-0' : 'opacity-100'}`}
+        className={`absolute left-0 right-0 transition-opacity duration-500 ease-in-out ${selectedCard === null ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
         style={{
           top: '18rem',
         }}
