@@ -39,17 +39,17 @@ export default function Home() {
         },
       };
 
-      const openloginAdapter = new OpenloginAdapter({
-        loginSettings: {
-          mfaLevel: "mandatory",
-        },
-        adapterSettings: {
-          uxMode: "popup",
-          whiteLabel: {
-            name: "Safe",
-          },
-        },
-      });
+      // const openloginAdapter = new OpenloginAdapter({
+      //   loginSettings: {
+      //     mfaLevel: "mandatory",
+      //   },
+      //   adapterSettings: {
+      //     uxMode: "popup",
+      //     whiteLabel: {
+      //       name: "Safe",
+      //     },
+      //   },
+      // });
 
       const walletConnectV2Adapter = new WalletConnectV2Adapter({});
 
@@ -59,7 +59,7 @@ export default function Home() {
 
       await web3AuthModalPack.init({
         options,
-        adapters: [walletConnectV2Adapter],
+        adapters: [],
         modalConfig,
       });
 
@@ -72,6 +72,7 @@ export default function Home() {
   const handleLogin = async () => {
     if (web3AuthModalPack) {
       const userInfo = await web3AuthModalPack.signIn(); // Perform sign-in
+      console.log(userInfo);
       setUser(userInfo); // Update the state with user info
     }
   };
