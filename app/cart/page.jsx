@@ -1,12 +1,10 @@
 'use client'
 
-// import { Fragment, useState } from 'react'
-// import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
-// import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, UserIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { CheckIcon, ClockIcon } from '@heroicons/react/20/solid'
+import { useState } from 'react'
 import MainTitle from '../components/MainTitle'
 import Desc from '../components/Desc'
 import ReactSlider from 'react-slider'
+import ApplicationLogo from '../components/ApplicationLogo'
 
 const products = [
   {
@@ -30,10 +28,30 @@ const products = [
 ]
 
 export default function Cart() {
-  // const [open, setOpen] = useState(false)
+  const [value, setValue] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const handleChange = (newValue) => {
+    setValue(newValue);
+  };
+
+  const handleBeforeChange = () => {
+    setIsDragging(true);
+  };
+
+  const handleAfterChange = (newValue) => {
+    setIsDragging(false);
+    if (newValue !== 100) {
+      setValue(0);
+      return;
+    }
+
+    window.location.href = '/pay';
+  };
 
   return (
-    <div className="bg-white">
+    <div>
+      <ApplicationLogo />
       <main>
         <MainTitle text="Shopping Cart"/>
         <Desc text="Items to purchase placeholder text" />
@@ -80,7 +98,6 @@ export default function Cart() {
             </ul>
           </section>
 
-          {/* Order summary */}
           <section aria-labelledby="summary-heading" className="mt-10">
             <h2 id="summary-heading" className="sr-only">
               Order summary
@@ -90,25 +107,25 @@ export default function Cart() {
               <dl className="space-y-4">
                 <div className="flex items-center justify-between">
                   <dt className="text-base font-medium text-gray-900">Subtotal</dt>
-                  <dd className="ml-4 text-base font-medium text-primary text-xl">20 USDC</dd>
+                  <dd className="ml-4 font-medium text-primary text-xl">20 USDC</dd>
                 </div>
               </dl>
               <p className="mt-1 text-sm text-gray-500">Total amount will be calculated at checkout</p>
             </div>
 
-            <div className="mt-10">
+            <div className="relative mt-10">
               <ReactSlider
                 className="w-100 h-[50px] bg-primary bg-opacity-50 rounded-lg"
-                thumbClassName="top-[1px] w-[50px] h-[50px] bg-primary rounded-lg"
+                thumbClassName="top-[1px] w-[50px] h-[48px] bg-primary rounded-lg cursor-pointer outline-none focus:outline-none"
                 trackClassName="bg-red-300"
-                // renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}
+                value={value}
+                onChange={handleChange}
+                onBeforeChange={handleBeforeChange}
+                onAfterChange={handleAfterChange}
               />
-              {/* <button
-                type="submit"
-                className="w-full rounded-md border border-transparent bg-primary px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
-              >
+              <div className={`absolute top-3 w-full text-center transition-opacity duration-500 text-white font-medium ${isDragging ? 'opacity-0' : 'opacity-100'}`}>
                 Slide to Purchase
-              </button> */}
+              </div>
             </div>
           </section>
         </form>
