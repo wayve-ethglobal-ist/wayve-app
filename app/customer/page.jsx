@@ -19,15 +19,26 @@ export default function Customer() {
 
     console.log(`creating subdomain for ${name}`)
 
-    const abi = [
-      " function setSubnodeRecord(bytes32 parentNode,string memory label,address owner,address resolver,uint64 ttl,uint32 fuses,uint64 expiry) external returns (bytes32 node)"
+    const ensAbi = [
+      "function setSubnodeRecord(bytes32 parentNode,string memory label,address owner,address resolver,uint64 ttl,uint32 fuses,uint64 expiry) external returns (bytes32 node)"
     ]
 
-    const contract = new ethers.Contract("0x114D4603199df73e7D157787f8778E21fCd13066", abi, wallet)
+    const membershipAbi = [
+      "function create(address member) public",
+      "function pay() external"
+    ]
 
-    const subdomain = await contract.setSubnodeRecord("0x3aecd94a92d3e4931ec0972fe247db341f130aac89cc19f4d8ada251cb905936", name, "0x1cB56b7B8e92662e8123c0Ac7812FcC9db45e6Df", "0xd7a4F6473f32aC2Af804B3686AE8F1932bC35750", 0, 0, 0)
+
+    const ensContract = new ethers.Contract("0x114D4603199df73e7D157787f8778E21fCd13066", ensAbi, wallet)
+    const membershipContract = new ethers.Contract("0x57a5de06a609bde8abe538ca87903f692b8ee14c", membershipAbi, wallet)
+
+    const subdomain = await ensContract.setSubnodeRecord("0x3aecd94a92d3e4931ec0972fe247db341f130aac89cc19f4d8ada251cb905936", name, "0x1cB56b7B8e92662e8123c0Ac7812FcC9db45e6Df", "0xd7a4F6473f32aC2Af804B3686AE8F1932bC35750", 0, 0, 0)
+    const membership = await membershipContract.create(wallet.address)
+    const pay = await membershipContract.pay({value: ethers.parseEther("1")})
 
     console.log(subdomain)
+    console.log(membership)
+    console.log(pay)
 
     window.location.href = '/cart';
 
