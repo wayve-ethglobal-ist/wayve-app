@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { ethers } from 'ethers'
+import { useState, useEffect } from 'react'
 import ApplicationLogo from "../components/ApplicationLogo"
 import Card from "../components/Card"
 import MainTitle from "../components/MainTitle"
@@ -11,15 +12,51 @@ import { ChevronUpIcon } from '@heroicons/react/20/solid'
 export default function CardList() {
   const [isCardSelected, setIsCardSelected] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
+  const [points, setPoints] = useState(0)
+  const [name, setName] = useState("Wayve Points")
+
+  const provider = new ethers.JsonRpcProvider("https://goerli.infura.io/v3/bacf8ec5ca9e45a48cd54424d47e2811")
 
   const handleCardClick = (cardName) => {
-    if(selectedCard){
+    if (selectedCard) {
       setSelectedCard(null);
       return;
     }
 
     setSelectedCard(cardName);
   };
+
+  // resolve ENS name if applicable
+
+  const resolveAddress = async () => {
+
+    const address = "0xEeee7341f206302f2216e39D715B96D8C6901A1C"
+    const ens = await provider.lookupAddress(address)
+
+    setName(ens)
+
+  }
+
+  // retrieve points held by user
+
+  const getPoints = async () => {
+
+    const abi = [
+      "function balanceOf(address addr) view returns (uint)"
+    ]
+
+    const contract = new ethers.Contract("0x8fbbd991e9c50bab1bf0270d981d1028a2036c91", abi, provider)
+
+    const points = await contract.balanceOf("0xcd7c1b32b96b6b80e9186fd0c7e7b1b160486928")
+
+    setPoints(ethers.formatEther(points))
+
+  }
+
+  useEffect(() => {
+    getPoints()
+    resolveAddress()
+  })
 
   return (
     <div className="h-screen overflow-hidden relative">
@@ -28,16 +65,16 @@ export default function CardList() {
         <div className="w-full">
           <div className={`mb-4 text-center text-xl transition-opacity duration-500 ${isCardSelected ? 'opacity-0' : 'opacity-100'}`}>Select card</div>
           <button onClick={() => setIsCardSelected(!isCardSelected)} className="w-full">
-            <Card name="SpaceX" points="1250" img="pexels-1.jpg" />
+            <Card name={name} points={points} img="pexels-1.jpg" />
           </button>
         </div>
       </div>
 
-      <div 
-        className="absolute left-0 right-0 transition-all duration-500 ease-in-out" 
+      <div
+        className="absolute left-0 right-0 transition-all duration-500 ease-in-out"
         onClick={() => handleCardClick('SpaceX')}
         style={{
-          bottom: isCardSelected && selectedCard === null ? (selectedCard === 'SpaceX' ? 'auto' : '4rem' ) : '-30rem',
+          bottom: isCardSelected && selectedCard === null ? (selectedCard === 'SpaceX' ? 'auto' : '4rem') : '-30rem',
           top: isCardSelected && selectedCard === 'SpaceX' ? '4.25rem' : 'auto',
         }}
       >
@@ -45,9 +82,9 @@ export default function CardList() {
           <Card name="SpaceX" points="1250" img="pexels-1.jpg" />
         </div>
       </div>
-      <div 
-        className="absolute left-0 right-0 transition-all duration-500 ease-in-out" 
-        onClick={() => handleCardClick('Tesla')} 
+      <div
+        className="absolute left-0 right-0 transition-all duration-500 ease-in-out"
+        onClick={() => handleCardClick('Tesla')}
         style={{
           bottom: isCardSelected && selectedCard === null ? (selectedCard === 'Tesla' ? 'auto' : '0rem') : '-30rem',
           top: isCardSelected && selectedCard === 'Tesla' ? '4.25rem' : 'auto',
@@ -57,9 +94,9 @@ export default function CardList() {
           <Card name="Tesla" points="1050" img="pexels-2.jpg" />
         </div>
       </div>
-      <div 
-        className="absolute left-0 right-0 transition-all duration-500 ease-in-out" 
-        onClick={() => handleCardClick('Go Green')} 
+      <div
+        className="absolute left-0 right-0 transition-all duration-500 ease-in-out"
+        onClick={() => handleCardClick('Go Green')}
         style={{
           bottom: isCardSelected && selectedCard === null ? (selectedCard === 'Go Green' ? 'auto' : '-4rem') : '-30rem',
           top: isCardSelected && selectedCard === 'Go Green' ? '4.25rem' : 'auto',
