@@ -1,11 +1,10 @@
 'use client'
-import ApplicationLogo from "../components/ApplicationLogo"
-import MainTitle from "../components/MainTitle"
-import Desc from "../components/Desc"
-import Card from "../components/Card"
-import { FieldSet, RadioButton } from '@ensdomains/thorin'
+import MainTitle from "../../components/MainTitle"
+import Desc from "../../components/Desc"
+import { FieldSet, RadioButton, Toast} from '@ensdomains/thorin'
 import { useState, useEffect } from 'react'
 import { ethers } from 'ethers'
+import Breadcrumbs from '../../components/Breadcrumbs'
 
 export default function Voting() {
 
@@ -100,7 +99,8 @@ export default function Voting() {
   const submitVote = async (checked) => {
 
     console.log(`casting vote on chain`)
-    const vote = await contract.vote(0, checked)
+    // Amirul - I commented below to simulate success banner
+    //const vote = await contract.vote(0, checked)
     console.log(vote)
 
   }
@@ -111,7 +111,12 @@ export default function Voting() {
 
   return (
     <div>
-      <ApplicationLogo />
+      <Breadcrumbs
+        pages={[
+          { name: 'Card', href: '/card-list' },
+          { name: 'Voting', href: '#' },
+        ]}
+      />
       <div className="mb-12 space-y-4">
         <div className="max-w-xl">
           <MainTitle text="Vote" />

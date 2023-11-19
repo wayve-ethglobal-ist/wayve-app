@@ -1,6 +1,5 @@
-import ApplicationLogo from "../components/ApplicationLogo"
-import MainTitle from "../components/MainTitle"
-import Desc from "../components/Desc"
+import MainTitle from "../../components/MainTitle"
+import Desc from "../../components/Desc"
 import Link from "next/link"
 
 const products = [
@@ -27,7 +26,6 @@ const products = [
 export default function Success() {
   return (
     <div className="mb-12">
-      <ApplicationLogo />
       <div className="max-w-xl">
         <MainTitle text="Thank you!" />
         <Desc text="For inquiries call 1800-EIP-4337" />

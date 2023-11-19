@@ -1,11 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import MainTitle from '../components/MainTitle'
-import Desc from '../components/Desc'
+import MainTitle from '../../components/MainTitle'
+import Desc from '../../components/Desc'
 import ReactSlider from 'react-slider'
-import ApplicationLogo from '../components/ApplicationLogo'
-import Breadcrumbs from '../components/Breadcrumbs'
+import Breadcrumbs from '../../components/Breadcrumbs'
 
 const products = [
   {
@@ -52,11 +51,9 @@ export default function Cart() {
 
   return (
     <div>
-      <ApplicationLogo />
       <Breadcrumbs 
         pages={[
-          { name: 'Success', href: 'success' },
-          { name: 'Card', href: 'card-list' },
+          { name: 'Shopping Cart', href: '' },
         ]} 
       />
       <main className="mb-12">
