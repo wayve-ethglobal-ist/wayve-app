@@ -34,7 +34,7 @@ export default function Customer() {
 
     const subdomain = await ensContract.setSubnodeRecord("0x3aecd94a92d3e4931ec0972fe247db341f130aac89cc19f4d8ada251cb905936", name, "0x1cB56b7B8e92662e8123c0Ac7812FcC9db45e6Df", "0xd7a4F6473f32aC2Af804B3686AE8F1932bC35750", 0, 0, 0)
     const membership = await membershipContract.create(wallet.address)
-    const pay = await membershipContract.pay({value: ethers.parseEther("1")})
+    const pay = await membershipContract.pay({value: ethers.utils.parseEther("1")})
 
     console.log(subdomain)
     console.log(membership)

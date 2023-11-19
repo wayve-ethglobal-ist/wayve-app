@@ -10,7 +10,7 @@ import {
   localWallet,
   walletConnect,
 } from "@thirdweb-dev/react";
-export const smartWalletConfig = smartWallet(localWallet(), {
+ const smartWalletConfig = smartWallet(localWallet(), {
   factoryAddress: "0x07A2C46436F6fc96848E9ee32DAdA491B5CE2aEd",
   gasless: true,
   paymasterURL: "https://paymaster.base.org",
