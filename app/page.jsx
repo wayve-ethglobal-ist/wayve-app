@@ -17,15 +17,13 @@ export default function Home() {
   const { mutateAsync, isLoading, error } = useContractWrite(contract, "vote");
 
   const merhabaFromWayve = () => {
-    console.log("call wallet here");
+    //simulate click on the connect wallet button
+    document.querySelector(".connect button").click();
   };
 
   const onSuccess = (result) => {
     // This is where you should perform frontend actions once a user has been verified, such as redirecting to a new page
-    window.alert(
-      "Successfully verified with World ID! Your nullifier hash is: " +
-        result.nullifier_hash
-    );
+    merhabaFromWayve();
   };
 
   const handleProof = async (result) => {
