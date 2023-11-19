@@ -5,13 +5,15 @@ import { FieldSet, RadioButton, Toast} from '@ensdomains/thorin'
 import { useState, useEffect } from 'react'
 import { ethers } from 'ethers'
 import Breadcrumbs from '../../components/Breadcrumbs'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Voting() {
 
   const [checked, setChecked] = useState()
   const [foor, setFoor] = useState(0)
   const [against, setAgainst] = useState(0)
-
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   // contract and provider
 
@@ -99,10 +101,17 @@ export default function Voting() {
   const submitVote = async (checked) => {
 
     console.log(`casting vote on chain`)
-    // Amirul - I commented below to simulate success banner
-    //const vote = await contract.vote(0, checked)
-    console.log(vote)
+    setIsAuthenticated(false)
 
+    // commented code below to simulate success banner
+    // const vote = await contract.vote(0, checked)
+    // console.log(vote)
+
+  }
+
+  const handleAuthenticate = () => {
+    setIsAuthenticated(true)
+    toast("✅ Vote casted successfully!");
   }
 
   useEffect(() => {
@@ -110,7 +119,7 @@ export default function Voting() {
   }, [checked])
 
   return (
-    <div>
+    <div >
       <Breadcrumbs
         pages={[
           { name: 'Card', href: '/card-list' },
@@ -148,6 +157,22 @@ export default function Voting() {
       >
         Vote
       </button>
+
+      <div 
+        className="absolute left-0 right-0 transition-all duration-500 ease-in-out bg-gray-100"
+        style={{
+          bottom: isAuthenticated ? '-30rem' : '0',
+        }}
+      >
+        <div className="text-center pt-4 pb-12 font-medium text-lg">Please Authenticate</div>
+        <div className="grid place-items-center p-10">
+          <svg onClick={() => handleAuthenticate()}  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-16 h-16 animate-pulse">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M7.864 4.243A7.5 7.5 0 0119.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 004.5 10.5a7.464 7.464 0 01-1.15 3.993m1.989 3.559A11.209 11.209 0 008.25 10.5a3.75 3.75 0 117.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 01-3.6 9.75m6.633-4.596a18.666 18.666 0 01-2.485 5.33" />
+          </svg>
+        </div>
+      </div>
+
+      <ToastContainer progressClassName="bg-primary" />
     </div>
   )
 }
