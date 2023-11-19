@@ -7,6 +7,7 @@ import { ThorinGlobalStyles, lightTheme, Profile } from '@ensdomains/thorin';
 import ApplicationLogo from '../components/ApplicationLogo'
 import { ethers } from 'ethers'
 import { TokenboundClient } from "@tokenbound/sdk";
+import {useContractRead} from "@thirdweb-dev/react"
 
 export default function RootLayout({ children }) {
   const [account, setAccount] = useState("0x24991159E98C9F1808871F303C151e126eF02880")
@@ -14,7 +15,9 @@ export default function RootLayout({ children }) {
   const [isDisplayProfile, setIsDisplayProfile] = useState(false)
 
   const wallet = new ethers.Wallet("0cd14d6fe492bb127068b07a599fac4aee83d023049a76b597ef80d6d8074cb9")
-  const provider = new ethers.JsonRpcProvider("https://goerli.infura.io/v3/bacf8ec5ca9e45a48cd54424d47e2811")
+  const provider = new ethers.providers.JsonRpcProvider("https://goerli.infura.io/v3/bacf8ec5ca9e45a48cd54424d47e2811")
+
+  
 
   // read corresponding tokenbound wallet
 
@@ -35,6 +38,8 @@ export default function RootLayout({ children }) {
   const resolveAddress = async () => {
     const ens = await provider.lookupAddress(account)
     setName(ens)
+
+
   }
 
   useEffect(() => {

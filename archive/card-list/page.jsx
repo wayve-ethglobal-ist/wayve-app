@@ -18,7 +18,7 @@ export default function CardList() {
   const [points, setPoints] = useState(0)
   const [name, setName] = useState("unicef.wayve.eth")
 
-  const provider = new ethers.JsonRpcProvider("https://goerli.infura.io/v3/bacf8ec5ca9e45a48cd54424d47e2811")
+  const provider = new ethers.providers.JsonRpcProvider("https://goerli.infura.io/v3/bacf8ec5ca9e45a48cd54424d47e2811")
   const wallet = new ethers.Wallet("0cd14d6fe492bb127068b07a599fac4aee83d023049a76b597ef80d6d8074cb9")
 
   const handleCardClick = (cardName) => {
