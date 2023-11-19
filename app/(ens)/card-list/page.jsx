@@ -45,7 +45,7 @@ export default function CardList() {
   }, [])
 
   return (
-    <div className="h-screen overflow-hidden relative -mt-12">
+    <div className="h-screen overflow-hidden relative -mt-12 max-w-sm mx-auto">
       <div className={`absolute left-0 right-0 transition-all duration-500 ease-in-out ${isCardSelected ? 'top-6' : 'top-1/2 -translate-y-1/2 grid place-items-center'}`}>
         <div className="w-full">
           <div className={`mb-4 text-center text-xl transition-opacity duration-500 ${isCardSelected ? 'opacity-0' : 'opacity-100'}`}>Select card</div>
@@ -98,7 +98,7 @@ export default function CardList() {
           top: '18rem',
         }}
       >
-        <div onClick={() => setSelectedCard(null)} className="flex items-center gap-1 cursor-pointer">
+        <div onClick={() => setSelectedCard(null)} className="flex items-center gap-1 cursor-pointer mt-4">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18" />
           </svg>
